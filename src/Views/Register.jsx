@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { REGISTER } from "../graphql/register";
 import { useMutation } from "@apollo/client";
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
+  const history = useNavigate(); 
   const initialValues = {
     userName: "",
     firstName: "",
@@ -13,13 +15,29 @@ const Register = () => {
   const [register, setRegister] = useState(initialValues);
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    console.log("value", value, "event", event.target.name, "name", name);
+    console.log(useNavigate)
     setRegister({
       ...register,
       [name]: value,
     });
   };
   const [registerUser] = useMutation(REGISTER);
+  const submitHandler = async (event) => {
+   history("/Login")
+
+    registerUser({
+          variables: {
+            username: register.userName,
+            firstName: register.firstName,
+            lastName: register.lastName,
+            email: register.email,
+            password: register.password,
+            confirmPassword: register.confirmPassword,
+          },
+       });
+    console.log("message")
+  }
+  
   return (
     <div style={{display:"flex"}}>
       <input
@@ -66,20 +84,24 @@ const Register = () => {
       ></input>
       <button
         type="submit"
-        onClick={() => {
-          registerUser({
-            variables: {
-              username: register.userName,
-              firstName: register.firstName,
-              lastName: register.lastName,
-              email: register.email,
-              password: register.password,
-              confirmPassword: register.confirmPassword,
-            },
-          });
-        }}
+        onClick={submitHandler}
+        // onClick={() => {
+        //   registerUser({
+        //     variables: {
+        //       username: register.userName,
+        //       firstName: register.firstName,
+        //       lastName: register.lastName,
+        //       email: register.email,
+        //       password: register.password,
+        //       confirmPassword: register.confirmPassword,
+        //     },
+        //  });
+       // }}
       >
         Register
+      </button>
+      <button onClick={()=> history("/Login")}>
+        Already have an account
       </button>
     </div>
   );
