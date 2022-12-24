@@ -21,7 +21,7 @@ const Register = () => {
   };
   const [registerUser] = useMutation(REGISTER);
   return (
-    <div>
+    <div style={{display:"flex"}}>
       <input
         type="text"
         name="userName"
@@ -82,7 +82,6 @@ const Register = () => {
         Register
       </button>
     </div>
-  
   );
 };
 

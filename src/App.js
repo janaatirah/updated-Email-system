@@ -1,9 +1,10 @@
-import "./App.css";
+
 import React from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import  Login from "./Views/Login";
-import './style/login.css'
+// import  Login from "./Views/Login";
+// import './style/login.css'
 import Register from "./Views/Register";
+import './style/register.css';
 function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
@@ -13,7 +14,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <Login/>
+        <Register/>
       </div>
     </ApolloProvider>
   );

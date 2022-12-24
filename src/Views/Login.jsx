@@ -8,6 +8,7 @@ const Login= () => {
       password: "",
      
     };
+    const [errors,setErrors]=useState({});
 
     const [Login, setLogin] = useState(initialValues);
     const changeHandler = (event) => {
@@ -16,7 +17,11 @@ const Login= () => {
     setLogin({
       ...Login,
       [name]: value,
-    });
+    }),
+    onError(err)
+    {
+      setErrors(err.graphQLErrors[0].extension.exception.errors);
+    }
   };
   const [login] = useMutation(LOGIN);
   return (
