@@ -1,15 +1,16 @@
 import React, { useState } from "react";
- 
+ import { useNavigate } from "react-router-dom";
 import {LOGIN } from "../graphql/login";
 import { useMutation } from "@apollo/client";
 const Login= () => {
+  const navigate = useNavigate();
+  const permission = true
     const initialValues = {
       email: "",
       password: "",
      
     };
-    const [errors,setErrors]=useState({});
-
+   
     const [Login, setLogin] = useState(initialValues);
     const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -17,18 +18,19 @@ const Login= () => {
     setLogin({
       ...Login,
       [name]: value,
-    }),
-    onError(err)
-    {
-      setErrors(err.graphQLErrors[0].extension.exception.errors);
-    }
+    })
+   
   };
   const [login] = useMutation(LOGIN);
+  const [message, setmessage] = useState(false)
   return (
     <div class="login-box">
       <div>
 
       <h2>Sign In</h2>
+      {
+        message && (<p>Permission denied</p>) 
+      }
     <div  class="user-box">
       <input
         type="email"
@@ -62,7 +64,7 @@ const Login= () => {
         Submit
       
       </button>
-      <button class="button1">Forget Password</button>
+      <button class="button1" onClick={()=> permission ? navigate("/ForgotPassword"): setmessage(true)}>Forget Password</button>
       </div>
     </div>
   
