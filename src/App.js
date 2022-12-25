@@ -1,10 +1,10 @@
 import React from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
- import  Login from "./Views/Login";
- import Register from "./Views/Register";
- import ForgotPassword from "./Views/ForgotPassword";
- import './style/login.css'
-import "./style/register.css";
+import  Login from "./Views/Login";
+import Register from "./Views/Register";
+import Home from './Views/ForgotPassword';
+import ForgotPassword from "./Views/ForgotPassword";
+// import './style/login.css'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
             <Route path="/" element={<Register />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/ForgotPassword" element={<ForgotPassword />} />
+            <Route path="/Home" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>

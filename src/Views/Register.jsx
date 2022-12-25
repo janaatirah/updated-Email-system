@@ -3,6 +3,7 @@ import { REGISTER } from "../graphql/register";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 const Register = () => {
+  const [formErrors,setFormerror]=useState();
   const history = useNavigate(); 
   const initialValues = {
     userName: "",
@@ -13,7 +14,21 @@ const Register = () => {
     confirmPassword: "",
   };
   const [register, setRegister] = useState(initialValues);
+  const validate =()=>
+  {
+    let err={};
+    if(!register.firstName)
+    {
+       Error.firstname="Required"
+    }
+    return formErrors;
+
+  
+  }
   const changeHandler = (event) => {
+    event.preventDefault()
+    let isValid= validate()
+    console.log(validate);
     const { name, value } = event.target;
     console.log(useNavigate)
     setRegister({
@@ -27,7 +42,6 @@ const Register = () => {
 
     registerUser({
           variables: {
-            username: register.userName,
             firstName: register.firstName,
             lastName: register.lastName,
             email: register.email,
@@ -42,18 +56,12 @@ const Register = () => {
     <div style={{display:"flex"}}>
       <input
         type="text"
-        name="userName"
-        placeholder="User Name..."
-        value={register.userName}
-        onChange={changeHandler}
-      ></input>
-      <input
-        type="text"
         name="firstName"
         placeholder="First Name..."
         value={register.firstName}
         onChange={changeHandler}
       ></input>
+      {formErrors.firstname}
       <input
         type="text"
         name="lastName"
