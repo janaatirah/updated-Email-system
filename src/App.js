@@ -4,7 +4,7 @@ import  Login from "./Views/Login";
 import Register from "./Views/Register";
 import Home from './Views/ForgotPassword';
 import ForgotPassword from "./Views/ForgotPassword";
-// import './style/login.css'
+import './style/login.css'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {
