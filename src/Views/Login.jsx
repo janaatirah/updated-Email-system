@@ -21,16 +21,25 @@ const Login= () => {
     })
    
   };
-  const [login] = useMutation(LOGIN);
-  const [message, setmessage] = useState(false)
+  const [login] = useMutation(LOGIN); 
+  // const [message, setmessage] = useState(false)
+  const submitHandler = async (event) => {
+    navigate("/Loggedin")
+    login({
+      variables: {
+        email: Login.email,
+        password: Login.password,
+      },
+    });
+  }
   return (
     <div class="login-box">
       <div>
 
       <h2>Sign In</h2>
-      {
+      {/* {
         message && (<p>Permission denied</p>) 
-      }
+      } */}
     <div  class="user-box">
       <input
         type="email"
@@ -52,19 +61,19 @@ const Login= () => {
       
       <button class="button2"
         type="submit"
-        onClick={() => {
-          login({
-            variables: {
-              email: Login.email,
-              password: Login.password,
-            },
-          });
-        }}
+        onClick={submitHandler}
+        //   login({
+        //     variables: {
+        //       email: Login.email,
+        //       password: Login.password,
+        //     },
+        //   });
+        // }}
       >
         Submit
       
       </button>
-      <button class="button1" onClick={()=> permission ? navigate("/ForgotPassword"): setmessage(true)}>Forget Password</button>
+      <button class="button1" onClick={navigate("/ForgotPassword")}>Forget Password</button>
       </div>
     </div>
   
