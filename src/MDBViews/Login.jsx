@@ -80,9 +80,6 @@ const Login= () => {
           </MDBCard>
 
         </MDBCol>
-
-
-
         
       </MDBRow>
 
