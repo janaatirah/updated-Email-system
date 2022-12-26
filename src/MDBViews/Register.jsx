@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { REGISTER } from "../graphql/register";
 import { useMutation } from "@apollo/client";
 import logo from "../logo.jpg";
+import { useNavigate } from 'react-router-dom';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import '../style/style.css'
 
 import {
   MDBBtn,
@@ -11,13 +14,12 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBCheckbox
 }
 from 'mdb-react-ui-kit';
 
 
-
 const Register = () => {
+  const history = useNavigate(); 
   const initialValues = {
     userName: "",
     firstName: "",
@@ -29,13 +31,29 @@ const Register = () => {
   const [register, setRegister] = useState(initialValues);
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    console.log("value", value, "event", event.target.name, "name", name);
+    console.log(useNavigate)
     setRegister({
       ...register,
       [name]: value,
     });
   };
   const [registerUser] = useMutation(REGISTER);
+  const submitHandler = async (event) => {
+   history("/Login")
+
+    registerUser({
+          variables: {
+            username: register.userName,
+            firstName: register.firstName,
+            lastName: register.lastName,
+            email: register.email,
+            password: register.password,
+            confirmPassword: register.confirmPassword,
+          },
+       });
+    console.log("message")
+  }
+  
   return (
 
 <MDBContainer>
@@ -49,7 +67,7 @@ const Register = () => {
       <center> <img class="img" src={logo} alt="logo" /> </center> 
 
         <h2 className="fw-bold mb-2 text-center">Register</h2>
-        <p class="headText">Please fill all these fields to register!</p>
+    
 
         <MDBInput wrapperClass='mb-4 w-100' label='User Name' type='text' name="userName" size="lg"/>
         <MDBInput wrapperClass='mb-4 w-100' label='First Name' type='text' name="firstName" size="lg"/>
@@ -73,7 +91,7 @@ const Register = () => {
         </MDBBtn>
         <p></p>
 
-        <p className="text-black-50 mb-3">Already have an account? <a href="#">Login Here</a></p> 
+        <p className="text-black-50 mb-3">Already have an account? <MDBBtn onClick={()=> history("/Login")}>Login Here</MDBBtn></p> 
 
         <hr className="my-4" />
 
