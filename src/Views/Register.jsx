@@ -14,13 +14,14 @@ const initialValues = {
 };
 const Register = () => {
   const {errors,handleBlur }= useFormik({
-    // initialValues:initialValues,
+    initialValues:initialValues,
     validationSchema:signUpSchema,
     onSubmit:(register)=>
     {  console.log(register);
     },
   });
   console.log(errors);
+ 
   const history = useNavigate(); 
   
   const [register, setRegister] = useState(initialValues);
@@ -50,12 +51,12 @@ const Register = () => {
   }
   
   return (
-    <div style={{backgroundColor:"#fff"}}>
+    <div class="user-box">
       <TextField
         type="text"
         name="firstName"
         error
-        helperText="errors.firstName"
+        helperText={errors.firstName}
         placeholder="First Name..."
         value={register.firstName}
         onChange={changeHandler}
