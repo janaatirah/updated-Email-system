@@ -8,7 +8,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
  import './style/login.css'
 import "./style/register.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-
+// changes in App.js
 function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
