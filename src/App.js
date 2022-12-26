@@ -5,6 +5,7 @@ import Register from "./Views/Register";
 import Home from './Views/ForgotPassword';
 import ForgotPassword from "./Views/ForgotPassword";
 import './style/login.css'
+import './style/register.css'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {
