@@ -2,33 +2,30 @@ import React, { useState } from "react";
 import { REGISTER } from "../graphql/register";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from "formik";
+import { signUpSchema } from '../Views'
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 const Register = () => {
-  const [formErrors,setFormerror]=useState();
+  const {errors,handleBlur }= useFormik({
+    initialValues:initialValues,
+    validationSchema:signUpSchema,
+    onSubmit:(register)=>
+    {  console.log(register);
+    },
+  });
+  console.log(errors);
+ 
   const history = useNavigate(); 
-  const initialValues = {
-    userName: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-  const [register, setRegister] = useState(initialValues);
-  const validate =()=>
-  {
-    let err={};
-    if(!register.firstName)
-    {
-       Error.firstname="Required"
-    }
-    return formErrors;
-
   
-  }
+  const [register, setRegister] = useState(initialValues);
   const changeHandler = (event) => {
     event.preventDefault()
-    let isValid= validate()
-    console.log(validate);
     const { name, value } = event.target;
     console.log(useNavigate)
     setRegister({
@@ -61,7 +58,8 @@ const Register = () => {
         value={register.firstName}
         onChange={changeHandler}
       ></input>
-      {formErrors.firstname}
+      <p>{errors.firstName}</p>
+     
       <input
         type="text"
         name="lastName"
@@ -69,6 +67,7 @@ const Register = () => {
         value={register.lastName}
         onChange={changeHandler}
       ></input>
+       <p>{errors.lastName}</p>
       <input
         type="email"
         name="email"
@@ -76,6 +75,7 @@ const Register = () => {
         value={register.email}
         onChange={changeHandler}
       ></input>
+       <p>{errors.email}</p>
       <input
         type="password"
         name="password"
@@ -83,6 +83,7 @@ const Register = () => {
         value={register.password}
         onChange={changeHandler}
       ></input>
+       <p>{errors.password}</p>
       <input
         type="password"
         name="confirmPassword"
@@ -90,6 +91,7 @@ const Register = () => {
         value={register.confirmPassword}
         onChange={changeHandler}
       ></input>
+       <p>{errors.confirmPassword}</p>
       <button
         type="submit"
         onClick={submitHandler}
