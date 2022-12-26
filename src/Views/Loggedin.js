@@ -8,13 +8,11 @@ import Navbar from '../Navbartest/Navbar'
 export default function Loggedin (){
     return(
 <> 
-<<<<<<< HEAD
 {/* <h1>
     NAVBAR
 </h1> */}
-=======
+
 <Navbar/>
->>>>>>> ayman
 <Routes>
             <Route path="Home" element={<Home />} />
             <Route path="Users" element={<Users />} />
