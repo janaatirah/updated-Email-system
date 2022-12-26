@@ -1,10 +1,10 @@
 import React, { useState } from "react";
- 
+import { useNavigate } from "react-router-dom";
 import {LOGIN } from "../graphql/login";
 import { useMutation } from "@apollo/client";
 import logo from "../logo.jpg";
-
-
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import '../style/style.css'
 
 
 import {
@@ -15,14 +15,13 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBCheckbox
 }
 from 'mdb-react-ui-kit';
 
 
-
-
 const Login= () => {
+  const navigate = useNavigate();
+  const permission = true
     const initialValues = {
       email: "",
       password: "",
@@ -39,6 +38,7 @@ const Login= () => {
     });
   };
   const [login] = useMutation(LOGIN);
+  
   return (
     
     <MDBContainer>
@@ -49,14 +49,17 @@ const Login= () => {
           <MDBCard className='bg-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '500px'}}>
             <MDBCardBody className='p-5 w-100 d-flex flex-column'>
 
-            <center> <img class="img" src={logo} alt="logo" /> </center> 
+            <center> <img class="img" src={logo} alt="logo" /> 
+           
+            </center> 
 
               <h2 className="fw-bold mb-2 text-center">Sign in</h2>
               <p class="headText">Please enter your email and password!</p>
 
-              <MDBInput wrapperClass='mb-4 w-100' label='Email address' type='email' name="email" size="lg"/>
-              <MDBInput wrapperClass='mb-4 w-100' label='Password' type='password' name="password" size="lg"/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Email address' type='email' id= "email" name="email" size="lg"/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Password' type='password' id="password" name="password" size="lg"/>
 
+          
               <MDBBtn size='lg' onClick={login({
             variables: {
               email: Login.email,
@@ -66,8 +69,10 @@ const Login= () => {
                 Login
               </MDBBtn>
               <p></p>
+              <div class="forgot" onClick={()=> navigate("/ForgotPassword")}>forgot password?</div>
+              <p></p>
 
-              <p className="text-black-50 mb-3">Not registered yet? <MDBBtn>Register Here</MDBBtn></p> 
+              <p className="text-black-50 mb-3">Not registered yet?  <MDBBtn onClick={()=> navigate("/Register")}>Register</MDBBtn> </p> 
 
               <hr className="my-4" />
 
