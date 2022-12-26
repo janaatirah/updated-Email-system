@@ -71,7 +71,7 @@ const Login= () => {
         Submit
       
       </button>
-      <button class="button1" onClick={navigate("/ForgotPassword")}>Forget Password</button>
+      <button class="button1" onClick={()=>navigate("/ForgotPassword")}>Forget Password</button>
       </div>
     </div>
   
