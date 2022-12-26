@@ -4,8 +4,10 @@ import  Login from "./Views/Login";
 import Register from "./Views/Register";
 import Home from './Views/ForgotPassword';
 import ForgotPassword from "./Views/ForgotPassword";
+import ResetPassword from "./Views/ResetPassword";
+import Loggedin from "./Views/Loggedin";
 import './style/login.css'
-import './style/register.css'
+// import './style/register.css'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {

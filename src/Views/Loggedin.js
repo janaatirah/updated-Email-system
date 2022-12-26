@@ -7,9 +7,9 @@ import Compose from './Compose'
 export default function Loggedin (){
     return(
 <> 
-<h1>
+{/* <h1>
     NAVBAR
-</h1>
+</h1> */}
 <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Users" element={<Users />} />

@@ -3,7 +3,8 @@ import { REGISTER } from "../graphql/register";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
-import { signUpSchema } from '../Views'
+import { signUpSchema } from './index';
+import { TextField } from "@mui/material";
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -13,14 +14,13 @@ const initialValues = {
 };
 const Register = () => {
   const {errors,handleBlur }= useFormik({
-    initialValues:initialValues,
+    // initialValues:initialValues,
     validationSchema:signUpSchema,
     onSubmit:(register)=>
     {  console.log(register);
     },
   });
   console.log(errors);
- 
   const history = useNavigate(); 
   
   const [register, setRegister] = useState(initialValues);
@@ -50,15 +50,16 @@ const Register = () => {
   }
   
   return (
-    <div style={{display:"flex"}}>
-      <input
+    <div style={{backgroundColor:"#fff"}}>
+      <TextField
         type="text"
         name="firstName"
+        error
+        helperText="errors.firstName"
         placeholder="First Name..."
         value={register.firstName}
         onChange={changeHandler}
-      ></input>
-      <p>{errors.firstName}</p>
+      />
      
       <input
         type="text"
