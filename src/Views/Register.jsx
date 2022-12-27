@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const history = useNavigate(); 
   const initialValues = {
-    userName: "",
+    // userName: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -27,7 +27,7 @@ const Register = () => {
 
     registerUser({
           variables: {
-            username: register.userName,
+            // username: register.userName,
             firstName: register.firstName,
             lastName: register.lastName,
             email: register.email,
@@ -39,7 +39,10 @@ const Register = () => {
   }
   
   return (
-    <div style={{display:"flex"}}>
+    <div class="login-box">
+    <div >
+    <h2>Sign Up</h2>
+    {/* <div  class="user-box">
       <input
         type="text"
         name="userName"
@@ -47,6 +50,8 @@ const Register = () => {
         value={register.userName}
         onChange={changeHandler}
       ></input>
+      </div> */}
+      <div  class="user-box">
       <input
         type="text"
         name="firstName"
@@ -54,6 +59,8 @@ const Register = () => {
         value={register.firstName}
         onChange={changeHandler}
       ></input>
+      </div>
+      <div  class="user-box">
       <input
         type="text"
         name="lastName"
@@ -61,6 +68,8 @@ const Register = () => {
         value={register.lastName}
         onChange={changeHandler}
       ></input>
+      </div>
+      <div  class="user-box">
       <input
         type="email"
         name="email"
@@ -68,6 +77,8 @@ const Register = () => {
         value={register.email}
         onChange={changeHandler}
       ></input>
+      </div>
+      <div  class="user-box">
       <input
         type="password"
         name="password"
@@ -75,6 +86,8 @@ const Register = () => {
         value={register.password}
         onChange={changeHandler}
       ></input>
+      </div>
+      <div  class="user-box">
       <input
         type="password"
         name="confirmPassword"
@@ -82,6 +95,7 @@ const Register = () => {
         value={register.confirmPassword}
         onChange={changeHandler}
       ></input>
+      </div>
       <button
         type="submit"
         onClick={submitHandler}
@@ -103,6 +117,7 @@ const Register = () => {
       <button onClick={()=> history("/Login")}>
         Already have an account
       </button>
+    </div>
     </div>
   );
 };
