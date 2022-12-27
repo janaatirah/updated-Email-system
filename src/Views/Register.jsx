@@ -2,107 +2,129 @@ import React, { useState } from "react";
 import { REGISTER } from "../graphql/register";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from "formik";
+import { signUpSchema } from './index';
+import { TextField } from "@mui/material";
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 const Register = () => {
-  const history = useNavigate(); 
-  const initialValues = {
-    userName: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-  const [register, setRegister] = useState(initialValues);
-  const changeHandler = (event) => {
-    const { name, value } = event.target;
-    console.log(useNavigate)
-    setRegister({
-      ...register,
-      [name]: value,
-    });
-  };
-  const [registerUser] = useMutation(REGISTER);
-  const submitHandler = async (event) => {
-   history("/Login")
+  const {  values,errors,handleBlur ,handleSubmit,handleChange}= useFormik({
+    initialValues:initialValues,
+    validationSchema:signUpSchema,
+    onSubmit:(register)=>
+    {    
+      console.log("I am clicked",errors)
+        return history("/Login")
+       registerUser({
+        variables: {
+          // username: values.userName,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+        },
+     });
 
-    registerUser({
-          variables: {
-            username: register.userName,
-            firstName: register.firstName,
-            lastName: register.lastName,
-            email: register.email,
-            password: register.password,
-            confirmPassword: register.confirmPassword,
-          },
-       });
-    console.log("message")
-  }
+    },
+  });
+  console.log(errors);
+ 
+  const history = useNavigate(); 
+  const [registerUser] = useMutation(REGISTER);
   
   return (
-    <div style={{display:"flex"}}>
-      <input
-        type="text"
-        name="userName"
-        placeholder="User Name..."
-        value={register.userName}
-        onChange={changeHandler}
-      ></input>
-      <input
+    <div >
+    <div >
+    <h2>Sign Up</h2>
+      <form  onSubmit ={handleSubmit} class="user-box">
+      <TextField
+              variant="outlined"
+
         type="text"
         name="firstName"
+        error
+        helperText={errors.firstName}
         placeholder="First Name..."
-        value={register.firstName}
-        onChange={changeHandler}
-      ></input>
-      <input
+        value={values.firstName}
+        onChange={handleChange}/>
+     
+      <TextField 
+              variant="outlined"
+
         type="text"
         name="lastName"
+        error
+        helperText={errors.lastName}
         placeholder="Last Name..."
-        value={register.lastName}
-        onChange={changeHandler}
-      ></input>
-      <input
+        value={values.lastName}
+        onChange={handleChange}
+      />
+    
+    
+      <TextField 
+              variant="outlined"
+
         type="email"
         name="email"
         placeholder="Email..."
-        value={register.email}
-        onChange={changeHandler}
-      ></input>
-      <input
+        error
+        helperText={errors.email}
+        value={values.email}
+        onChange={handleChange}
+      />
+      
+      
+      <TextField
+              variant="outlined"
+
         type="password"
         name="password"
         placeholder="Password..."
-        value={register.password}
-        onChange={changeHandler}
-      ></input>
-      <input
+        error
+        helperText={errors.password}
+        value={values.password}
+        onChange={handleChange}
+      />
+    
+      
+      <TextField
+        variant="outlined"
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password..."
-        value={register.confirmPassword}
-        onChange={changeHandler}
-      ></input>
+        error
+        helperText={errors.confirmPassword}
+        value={values.confirmPassword}
+        onChange={handleChange}
+      />
       <button
         type="submit"
-        onClick={submitHandler}
         // onClick={() => {
         //   registerUser({
         //     variables: {
-        //       username: register.userName,
-        //       firstName: register.firstName,
-        //       lastName: register.lastName,
-        //       email: register.email,
-        //       password: register.password,
-        //       confirmPassword: register.confirmPassword,
+        //       username: values.userName,
+        //       firstName: values.firstName,
+        //       lastName: values.lastName,
+        //       email: values.email,
+        //       password: values.password,
+        //       confirmPassword: values.confirmPassword,
         //     },
         //  });
        // }}
       >
         Register
       </button>
+      </form>
       <button onClick={()=> history("/Login")}>
         Already have an account
       </button>
+    </div>
     </div>
   );
 };
