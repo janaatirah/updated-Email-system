@@ -9,8 +9,6 @@ import Home from "./Views/Home";
 import Users from "./Views/Users";
 import Compose from "./Views/Compose";
 import Loggedin from "./Views/Loggedin";
-import "./style/login.css";
-// import "./style/register.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 // changes in App.js
 function App() {

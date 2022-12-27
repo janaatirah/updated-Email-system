@@ -98,6 +98,7 @@ const Register = () => {
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password..."
+
         helperText={errors.confirmPassword && touched.confirmPassword?(
           <p>{errors.confirmPassword}</p>
         ):null}
