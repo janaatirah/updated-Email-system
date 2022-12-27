@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 import React from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
  import  Login from "./Views/Login";
@@ -35,4 +34,3 @@ function App() {
 }
 
 export default App;
->>>>>>> ayman
