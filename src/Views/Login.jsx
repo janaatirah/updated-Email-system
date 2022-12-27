@@ -22,7 +22,7 @@ const Login= () => {
   const [login] = useMutation(LOGIN); 
   // const [message, setmessage] = useState(false)
   const submitHandler = async (event) => {
-    navigate("Loggedin")
+    navigate("/Loggedin")
     login({
       variables: {
         email: Login.email,
