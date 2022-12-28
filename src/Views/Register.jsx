@@ -13,7 +13,7 @@ const initialValues = {
   confirmPassword: "",
 };
 const Register = () => {
-  const {  values,errors,handleBlur ,handleSubmit,handleChange}= useFormik({
+  const {  values,errors, touched,handleSubmit,handleChange}= useFormik({
     initialValues:initialValues,
     validationSchema:signUpSchema,
     onSubmit:(register)=>
@@ -36,31 +36,32 @@ const Register = () => {
   console.log(errors);
  
   const history = useNavigate(); 
-  const [registerUser] = useMutation(REGISTER);
-  
+  const [registerUser] = useMutation(REGISTER)
   return (
-    <div >
-    <div >
+    <div>
+    <div>
     <h2>Sign Up</h2>
       <form  onSubmit ={handleSubmit} class="user-box">
       <TextField
-              variant="outlined"
-
+        variant="outlined"
         type="text"
         name="firstName"
-        error
-        helperText={errors.firstName}
+        helperText=
+        {errors.firstName && touched.firstName?(
+          <p>{errors.firstName}</p>
+        ):null}
         placeholder="First Name..."
         value={values.firstName}
         onChange={handleChange}/>
-     
-      <TextField 
-              variant="outlined"
 
+      <TextField 
+        variant="outlined"
         type="text"
         name="lastName"
-        error
-        helperText={errors.lastName}
+
+        helperText={errors.lastName && touched.lastName?(
+          <p>{errors.lastName}</p>
+        ):null}
         placeholder="Last Name..."
         value={values.lastName}
         onChange={handleChange}
@@ -68,38 +69,39 @@ const Register = () => {
     
     
       <TextField 
-              variant="outlined"
-
+        variant="outlined"
         type="email"
         name="email"
         placeholder="Email..."
-        error
-        helperText={errors.email}
+        helperText={errors.email && touched.email?(
+          <p>{errors.email}</p>
+ 
+        ):null}
         value={values.email}
         onChange={handleChange}
       />
       
       
       <TextField
-              variant="outlined"
-
+        variant="outlined"
         type="password"
         name="password"
         placeholder="Password..."
-        error
-        helperText={errors.password}
+        helperText={errors.password && touched.password?(
+          <p>{errors.password}</p>
+        ):null}
         value={values.password}
         onChange={handleChange}
       />
-    
-      
       <TextField
         variant="outlined"
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password..."
-        error
-        helperText={errors.confirmPassword}
+
+        helperText={errors.confirmPassword && touched.confirmPassword?(
+          <p>{errors.confirmPassword}</p>
+        ):null}
         value={values.confirmPassword}
         onChange={handleChange}
       />

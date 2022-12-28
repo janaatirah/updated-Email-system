@@ -1,51 +1,67 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+ import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { ResetSchemas } from './index';
+import { TextField } from "@mui/material";
+const initialValues = {
+  password: "",
+  confirmPassword:""
+ 
+};
 
-export default function ResetPassword(){
-  const navigate =useNavigate();
-    return(
+const ResetPassword= () => {
+  const history= useNavigate();
+
+  const {  values,errors, touched,handleSubmit,handleChange}= useFormik({
+    initialValues:initialValues,
+    validationSchema:ResetSchemas,
+    onSubmit:(Reset)=>
+    {    
+      console.log("I am clicked",errors)
+        return history("/Login")
+    },
+  });
+  console.log(errors);
+ 
+  return (
+    <div>
+      <div>
+      <h2>ResetPassword</h2>
+    <form onSubmit={handleSubmit}>
       
-        
-            <div class="login-box">
-              <div>
-        
-              <h2>Reset Password</h2>
-             
-            <div  class="user-box">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password..."
-                // value={Login.email}
-                // onChange={changeHandler}
-              ></input>
-              </div>
+      <TextField
+        type="password"
+        name="password"
+        helperText=
+        {errors.password && touched.password?(
+          <p>{errors.password}</p>
+        ):null}
+        placeholder="Password..."
+        value={values.password}
+        onChange={handleChange}/> 
+        <TextField
+        variant="outlined"
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password..."
+        helperText={errors.confirmPassword && touched.confirmPassword?(
+          <p>{errors.confirmPassword}</p>
+        ):null}
+        value={values.confirmPassword}
+        onChange={handleChange}
+      /> 
+      <button 
+      type="submit"
+      >
+        ChangePassword 
+      </button>
+      </form>
+      </div>
+    </div>
+  
+  );
+};
 
-              <div class="user-box">
-              <input
-                type="confirmpassword"
-                name="confirmPassword"
-                placeholder="Confirm Password..."
-                // value={Login.email}
-                // onChange={changeHandler}
-              ></input>
-              </div>
-              
-              
-              <button class="button2"
-                type="submit" onClick={() => navigate("/Login")}>
-                {/* // onClick={() => { */}
-                {/* //   login({
-                //     variables: {
-                //       email: Login.email,
-                //       password: Login.password,
-                //     },
-                //   });
-                // }} */}
-              
-                ChangePassword
-                </button>
-                </div>
-                </div>
-    )
-}
+export default ResetPassword;
+
+   

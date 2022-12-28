@@ -9,15 +9,14 @@ import Home from "./Views/Home";
 import Users from "./Views/Users";
 import Compose from "./Views/Compose";
 import Loggedin from "./Views/Loggedin";
-import "./style/login.css";
-// import "./style/register.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 // changes in App.js
 function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     uri:
-      "http://emailproject-env.eba-pwtpkn6y.ap-south-1.elasticbeanstalk.com/graphql",
+    "http://djangoemail-env.eba-2xqpbrdc.ap-south-1.elasticbeanstalk.com/graphql",
+      // "http://emailproject-env.eb-pwtpkn6y.ap-south-1.elasticbeanstalk.com/graphql",
   });
   return (
     <ApolloProvider client={client}>

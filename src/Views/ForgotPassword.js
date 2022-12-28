@@ -1,43 +1,57 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+ import { useNavigate } from "react-router-dom";
+import {ForgotSchemas } from './index';
+import { useFormik } from "formik";
+import { TextField } from "@mui/material";
+const initialValues = {
 
-export default function ForgotPassword(){
-  const navigate = useNavigate(); 
-  // const submitHandler = async (event) => {
-  //   navigate("/ResetPassword")
-  //   }
-    return(
-       
-            <div class="login-box">
-              <div>
-        
-              <h2>ForgotPassword</h2>
-             
-            <div  class="user-box">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email..."
-                // value={Login.email}
-                // onChange={changeHandler}
-              ></input>
-              </div>
-              
-              
-              <button class="button2"
-                type="submit" onClick={() => navigate("/ResetPassword")}
-                // onClick={() => {
-                //   login({
-                //     variables: {
-                //       email: Login.email,
-                //       password: Login.password,
-                //     },
-                //   });
-                // }}
-              >
-                Submit
-                </button>
-                </div>
-                </div>
-    );
-}
+  email: "",
+ 
+};
+
+  const ForgotPassword= () => {
+  const history= useNavigate();
+  const {  values,errors, touched,handleSubmit,handleChange}= useFormik({
+    initialValues:initialValues,
+    validationSchema:ForgotSchemas,
+    onSubmit:(forgot)=>
+    {    
+      console.log("I am clicked",errors)
+        return history("/ResetPassword") 
+
+    },
+  });
+  console.log(errors);
+ 
+  return (
+    <div>
+      <div>
+      <h2>ForgotPassword</h2>
+      
+    <form onSubmit={handleSubmit}>
+      <TextField
+        variant="outlined"
+        type="email"
+        name="email"
+        helperText=
+        {errors.email && touched.email?(
+          <p>{errors.email}</p>
+        ):null}
+        placeholder="Email..."
+        value={values.email}
+        onChange={handleChange}/>
+      <button 
+        type="submit"
+      >
+        Submit 
+      </button>
+      </form>     
+       </div>
+    </div>
+  
+  );
+};
+
+export default ForgotPassword;
+
+   
