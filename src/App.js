@@ -15,7 +15,8 @@ function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     uri:
-      "http://emailproject-env.eb-pwtpkn6y.ap-south-1.elasticbeanstalk.com/graphql",
+    "http://djangoemail-env.eba-2xqpbrdc.ap-south-1.elasticbeanstalk.com/graphql",
+      // "http://emailproject-env.eb-pwtpkn6y.ap-south-1.elasticbeanstalk.com/graphql",
   });
   return (
     <ApolloProvider client={client}>
