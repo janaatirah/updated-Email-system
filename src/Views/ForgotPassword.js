@@ -24,23 +24,25 @@ const initialValues = {
   console.log(errors);
  
   return (
-    <div>
-      <div>
-      <h2>ForgotPassword</h2>
+    
+ <div class="container">
+    
+ <div class="form-section">
+      <h2>Forgot Password</h2>
       
     <form onSubmit={handleSubmit}>
-      <TextField
+      <TextField size="small" class="textfield"
         variant="outlined"
         type="email"
         name="email"
         helperText=
         {errors.email && touched.email?(
-          <p>{errors.email}</p>
+          <i>{errors.email}</i>
         ):null}
         placeholder="Email..."
         value={values.email}
         onChange={handleChange}/>
-      <button 
+      <button class="btn"
         type="submit"
       >
         Submit 

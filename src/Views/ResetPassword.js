@@ -24,33 +24,35 @@ const ResetPassword= () => {
   console.log(errors);
  
   return (
-    <div>
-      <div>
+    <div class="container">
+    
+ <div class="form-section">
+
       <h2>ResetPassword</h2>
     <form onSubmit={handleSubmit}>
       
-      <TextField
+      <TextField size="small" class="textfield"
         type="password"
         name="password"
         helperText=
         {errors.password && touched.password?(
-          <p>{errors.password}</p>
+          <i>{errors.password}</i>
         ):null}
         placeholder="Password..."
         value={values.password}
         onChange={handleChange}/> 
-        <TextField
+        <TextField size="small" class="textfield"
         variant="outlined"
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password..."
         helperText={errors.confirmPassword && touched.confirmPassword?(
-          <p>{errors.confirmPassword}</p>
+          <i>{errors.confirmPassword}</i>
         ):null}
         value={values.confirmPassword}
         onChange={handleChange}
       /> 
-      <button 
+      <button class="btn"
       type="submit"
       >
         ChangePassword 
