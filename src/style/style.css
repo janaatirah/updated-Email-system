@@ -1,6 +1,6 @@
-body {
+/* body {
   background-color: #9A616D;
-}
+} */
 
 mainCard{
 width: 400px;
@@ -16,4 +16,11 @@ width: 400px;
 .headText{
 
   color: green;
+}
+.loggedincontainer{
+  height: 600px;
+   background-color: green;
+   background-image: url("bg.jpg");
+   background-repeat: no-repeat;
+   background-size: cover
 }
