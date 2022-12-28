@@ -6,6 +6,8 @@ export default function Navbar() {
       <Link to='/Loggedin/Home'>Home</Link>
       <Link to='/Loggedin/Users'>Users</Link>
       <Link to='/Loggedin/Compose'>Compose</Link>
+      <Link to='/Login'>Logout</Link>
+       
  
     </nav>
   );
