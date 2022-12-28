@@ -19,7 +19,7 @@ const Register = () => {
     onSubmit:(register)=>
     {    
       console.log("I am clicked",errors)
-        return history("/Login")
+       
        registerUser({
         variables: {
           // username: values.userName,
@@ -29,8 +29,10 @@ const Register = () => {
           password: values.password,
           confirmPassword: values.confirmPassword,
         },
-     });
-
+     })
+     .then(() => {
+      return history("/Login")
+    })
     },
   });
   console.log(errors);
