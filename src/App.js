@@ -14,7 +14,8 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri:"http://djangoemail-env.eba-2xqpbrdc.ap-south-1.elasticbeanstalk.com/graphql"
+    uri:
+      "http://emailproject-env.eb-pwtpkn6y.ap-south-1.elasticbeanstalk.com/graphql",
   });
   return (
     <ApolloProvider client={client}>

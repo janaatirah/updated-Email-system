@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {LOGIN } from "../graphql/login";
 import { useMutation } from "@apollo/client";
 import { useFormik } from "formik";
-import { signUpSchema } from './index';
+import { signUpSchemas } from './index';
 import { TextField } from "@mui/material";
 const initialValues = {
   email: "",
@@ -12,48 +12,32 @@ const initialValues = {
 };
 
 const Login= () => {
+  const history= useNavigate();
+
   const {  values,errors, touched,handleSubmit,handleChange}= useFormik({
     initialValues:initialValues,
-    validationSchema:signUpSchema,
-    onSubmit:(login)=>
+    validationSchema:signUpSchemas,
+    onSubmit:(Login)=>
     {    
       console.log("I am clicked",errors)
-        return history("/Login")
+        return history("/Loggedin")
         login({
-          variables: {
-            email: Login.email,
-            password: Login.password,
-          },
-        });
-      }
-    });
-    console.log(errors);
+        variables: {
+      
+          email: values.email,
+          password: values.password,
+    
+        },
+     });
 
-  const history = useNavigate();
-  
-  //   const [Login, setLogin] = useState(initialValues);
-  //   const changeHandler = (event) => {
-  //   const { name, value } = event.target;
-  //   console.log("value", value, "event", event.target.name, "name", name);
-  //   setLogin({
-  //     ...Login,
-  //     [name]: value,
-  //   })
-   
-  // };
+    },
+  });
+  console.log(errors);
   const [login] = useMutation(LOGIN); 
-  // const [message, setmessage] = useState(false)
-  // const submitHandler = async (event) => {
-  //   navigate("/Loggedin")
-   
-  // }
   return (
     <div>
       <div>
       <h2>Sign In</h2>
-      {/* {
-        message && (<p>Permission denied</p>) 
-      } */}
     <form onSubmit={handleSubmit}>
       <TextField
         variant="outlined"
@@ -64,10 +48,8 @@ const Login= () => {
           <p>{errors.email}</p>
         ):null}
         placeholder="Email..."
-        value={Login.email}
+        value={values.email}
         onChange={handleChange}/>
-  
-      
       <TextField
         type="password"
         name="password"
@@ -76,18 +58,11 @@ const Login= () => {
           <p>{errors.password}</p>
         ):null}
         placeholder="Password..."
-        value={Login.password}
+        value={values.password}
         onChange={handleChange}/>  
-      <button
-        type="submit"
-        // onClick={submitHandler}
-        //   login({
-        //     variables: {
-        //       email: Login.email,
-        //       password: Login.password,
-        //     },
-        //   });
-        // }}
+      <button 
+      type="submit"
+
       >
         Submit
       
