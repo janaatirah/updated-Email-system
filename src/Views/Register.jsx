@@ -136,7 +136,7 @@ const Register = () => {
       </button>
   
       </form>
-      <p>Already have an account? <b class="link" onClick={()=> history("/Login")}> Login </b> </p> 
+      <p>Already have an account? <span class="link" onClick={()=> history("/Login")}> Login </span> </p> 
     </div>
     </div>
   

@@ -1,7 +1,7 @@
 body{
   padding: 50px;
   font-family: 'Roboto', sans-serif;
-  background-color: #F5F5F5;
+  background-color: #dbdada;
 }
 
 .loggedincontainer{
@@ -14,10 +14,11 @@ body{
 
 .container{
   position: relative;
+  background-color: #F5F5F5;
   height: auto;
-  width: 500px;
+  width: 400px;
   margin: auto;
-  box-shadow: 0px 30px 125px -5px #000;}
+  box-shadow: 0px 10px 12px -5px #000;}
 
 .textfield{
    
@@ -25,6 +26,11 @@ body{
   
 }
 
+
+p{
+  font-size: 12px;
+  color: #000;
+}
 i{
   font-size: 10px;
   color: red;
@@ -32,7 +38,7 @@ i{
 
 h2 {
   padding-left: 15px;
-  font-size: 25px;
+  font-size: 14px;
   text-transform: uppercase;
   display: inline-block;
   font-weight: 300;
