@@ -28,7 +28,7 @@ const ResetPassword= () => {
     
  <div class="form-section">
 
-      <h2>ResetPassword</h2>
+      <h2>Reset Password</h2>
     <form onSubmit={handleSubmit}>
       
       <TextField size="small" class="textfield"
