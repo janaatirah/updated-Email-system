@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import { signUpSchema } from './index';
-import { TextField } from "@mui/material";
+import { Input, TextField } from "@mui/material";
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -19,7 +19,7 @@ const Register = () => {
     onSubmit:(register)=>
     {    
       console.log("I am clicked",errors)
-       
+        return history("/Login")
        registerUser({
         variables: {
           // username: values.userName,
@@ -29,10 +29,8 @@ const Register = () => {
           password: values.password,
           confirmPassword: values.confirmPassword,
         },
-     })
-     .then(() => {
-      return history("/Login")
-    })
+     });
+
     },
   });
   console.log(errors);
@@ -40,29 +38,41 @@ const Register = () => {
   const history = useNavigate(); 
   const [registerUser] = useMutation(REGISTER)
   return (
-    <div>
-    <div>
-    <h2>Sign Up</h2>
-      <form  onSubmit ={handleSubmit} class="user-box">
-      <TextField
+
+
+
+ <div class="container">
+    
+    <div class="form-section">
+     
+      <form onSubmit ={handleSubmit} >
+
+
+      <h2>Sign Up</h2>
+
+    
+      <TextField size="small" class="textfield"
         variant="outlined"
         type="text"
         name="firstName"
         helperText=
         {errors.firstName && touched.firstName?(
-          <p>{errors.firstName}</p>
+          <i>{errors.firstName}</i>
         ):null}
         placeholder="First Name..."
         value={values.firstName}
         onChange={handleChange}/>
 
-      <TextField 
+      
+      
+
+      <TextField size="small" class="textfield"
         variant="outlined"
         type="text"
         name="lastName"
 
         helperText={errors.lastName && touched.lastName?(
-          <p>{errors.lastName}</p>
+          <i>{errors.lastName}</i>
         ):null}
         placeholder="Last Name..."
         value={values.lastName}
@@ -70,13 +80,13 @@ const Register = () => {
       />
     
     
-      <TextField 
+      <TextField size="small" class="textfield"
         variant="outlined"
         type="email"
         name="email"
         placeholder="Email..."
         helperText={errors.email && touched.email?(
-          <p>{errors.email}</p>
+          <i>{errors.email}</i>
  
         ):null}
         value={values.email}
@@ -84,30 +94,30 @@ const Register = () => {
       />
       
       
-      <TextField
+      <TextField size="small" class="textfield"
         variant="outlined"
         type="password"
         name="password"
         placeholder="Password..."
         helperText={errors.password && touched.password?(
-          <p>{errors.password}</p>
+          <i>{errors.password}</i>
         ):null}
         value={values.password}
         onChange={handleChange}
       />
-      <TextField
+      <TextField size="small" class="textfield"
         variant="outlined"
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password..."
 
         helperText={errors.confirmPassword && touched.confirmPassword?(
-          <p>{errors.confirmPassword}</p>
+          <i>{errors.confirmPassword}</i>
         ):null}
         value={values.confirmPassword}
         onChange={handleChange}
       />
-      <button
+      <button class="btn"
         type="submit"
         // onClick={() => {
         //   registerUser({
@@ -124,12 +134,12 @@ const Register = () => {
       >
         Register
       </button>
+  
       </form>
-      <button onClick={()=> history("/Login")}>
-        Already have an account
-      </button>
+      <p>Already have an account? <b class="link" onClick={()=> history("/Login")}> Login </b> </p> 
     </div>
     </div>
+  
   );
 };
 
