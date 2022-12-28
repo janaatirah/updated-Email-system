@@ -30,38 +30,42 @@ const Login = () => {
   console.log(errors);
   const [login] = useMutation(LOGIN);
   return (
-    <div>
-      <div>
+   
+ <div class="container">
+    
+ <div class="form-section">
+
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
-          <TextField
+          <TextField size="small" class="textfield"
             variant="outlined"
             type="email"
             name="email"
             helperText=
             {errors.email && touched.email ? (
-              <p>{errors.email}</p>
+              <i>{errors.email}</i>
             ) : null}
             placeholder="Email..."
             value={values.email}
             onChange={handleChange} />
-          <TextField
+          <TextField size="small" class="textfield"
             type="password"
             name="password"
             helperText=
             {errors.password && touched.password ? (
-              <p>{errors.password}</p>
+              <i>{errors.password}</i>
             ) : null}
             placeholder="Password..."
             value={values.password}
             onChange={handleChange} />
-          <button
+          <button class="btn"
             type="submit"
           >
             Submit
           </button>
         </form>
-        <button onClick={() => history("/ForgotPassword")}>Forget Password</button>
+        <p class="link margin" onClick={()=> history("/ForgotPassword")}> Forget Password </p> 
+      
       </div>
     </div>
   );
