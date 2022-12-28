@@ -10,6 +10,7 @@ import Users from "./Views/Users";
 import Compose from "./Views/Compose";
 import Loggedin from "./Views/Loggedin";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import './style/style.css'
 // changes in App.js
 function App() {
   const client = new ApolloClient({
