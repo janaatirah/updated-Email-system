@@ -1,4 +1,5 @@
 import * as React from 'react';
+import userDialoug from './userDialoug'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -19,16 +20,21 @@ const rows = [
   createData('ishrat', 'jan', 'iymani07@gmail.com', 'ishrat'),
 ];
 
+
 export default function BasicTable() {
+   const addUser =()=>{
+    alert ("user added successfully")
+   }
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx= {{height: 600}}>
+      <button onClick={addUser}>Add new</button>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">FirstName</TableCell>
-            <TableCell align="right">LastName</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Username</TableCell>
+            <TableCell align="left">FirstName</TableCell>
+            <TableCell align="left">LastName</TableCell>
+            <TableCell align="left">Email</TableCell>
+            <TableCell align="left">Username</TableCell>
             {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
           </TableRow>
         </TableHead>
@@ -39,10 +45,10 @@ export default function BasicTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               
-              <TableCell align="right">{row.fName}</TableCell>
-              <TableCell align="right">{row.lname}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.user}</TableCell>
+              <TableCell align="left">{row.fName}</TableCell>
+              <TableCell align="left">{row.lname}</TableCell>
+              <TableCell align="left">{row.email}</TableCell>
+              <TableCell align="left">{row.user}</TableCell>
             </TableRow>
           ))}
         </TableBody>
