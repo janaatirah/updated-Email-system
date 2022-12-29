@@ -26,12 +26,14 @@ const Login = () => {
         return history("/Loggedin")
       }).catch(()=>
       {
-       alert("Please Enter valid credentials")
+      //  alert("Please Enter valid credentials")
+      setError(true)
       })
     },
   });
   console.log(errors);
   const [login] = useMutation(LOGIN);
+  const [error, setError] = useState(false)
   return (
    
  <div class="container">
@@ -39,6 +41,11 @@ const Login = () => {
  <div class="form-section">
 
         <h2>Sign In</h2>
+        {
+          error && (
+            <h5 style= {{color:"red"}}>Please Enter valid credentials</h5>
+          )
+        }
         <form onSubmit={handleSubmit}>
           <TextField size="small" class="textfield"
             variant="outlined"
