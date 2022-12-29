@@ -24,6 +24,9 @@ const Login = () => {
         },
       }).then(() => {
         return history("/Loggedin")
+      }).catch(()=>
+      {
+       alert("Please Enter valid credentials")
       })
     },
   });
