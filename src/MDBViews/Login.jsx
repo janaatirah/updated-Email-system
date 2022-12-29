@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {LOGIN } from "../graphql/login";
-import { useMutation } from "@apollo/client";
-import logo from "../logo.jpg";
+import { useMutation } from "@apollo/client";;
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '../style/style.css'
 

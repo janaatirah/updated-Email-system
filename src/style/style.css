@@ -1,7 +1,10 @@
 body{
   padding: 50px;
   font-family: 'Roboto', sans-serif;
-  background-color: #dbdada;
+  background-image: url('back2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
 }
 
 .loggedincontainer{
@@ -9,7 +12,18 @@ body{
    background-color: green;
    background-image: url("bg.jpg");
    background-repeat: no-repeat;
-   background-size: cover
+   background-size: cover;
+}
+
+.mainCard{
+
+  width: 30%;
+  margin: auto;
+}
+
+.img{
+  width: 20%;
+
 }
 
 .container{
@@ -57,15 +71,14 @@ h2 {
 }
 
 .btn {
-  background-color: #f4511e;
+  background-color: #0e68ee;
   border: none;
   color: white;
-  padding: 10px 40px;
+  padding: 10px 50px;
   text-align: center;
   font-size: 16px;
   opacity: 0.5;
   transition: 0.3s;
-  margin-left: 10px;
 }
 
 .btn:hover {opacity: 1}

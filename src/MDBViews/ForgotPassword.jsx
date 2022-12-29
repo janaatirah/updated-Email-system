@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../logo.jpg";
+import logo from "../style/logo.jpg";
 import { useNavigate } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '../style/style.css'
@@ -35,7 +35,6 @@ const history = useNavigate();
 
         <h2 className="fw-bold mb-2 text-center">Forgot Password</h2>
         <p class="headText">Please enter your email id to reset password!</p>
-
 
         <MDBInput wrapperClass='mb-4 w-100' label='Email' type='email' name="email" size="lg"/>
       
